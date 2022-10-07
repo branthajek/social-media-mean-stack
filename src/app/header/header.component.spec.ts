@@ -13,7 +13,7 @@ describe('HeaderComponent', () => {
     .compileComponents();
   });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
