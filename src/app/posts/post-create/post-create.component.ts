@@ -15,6 +15,7 @@ export class PostCreateComponent implements OnInit {
   post: Post;
   isLoading = false;
   form: FormGroup;
+  imagePreview: string;
 
   private mode = 'create';
   private postId: string;
@@ -69,5 +70,10 @@ export class PostCreateComponent implements OnInit {
       image: file
     });
     this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 }
