@@ -53,6 +53,19 @@ export class PostCreateComponent implements OnInit {
     });
   }
 
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({
+      image: file
+    });
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
   onSavePost() {
     if (this.form.invalid) {
       return;
@@ -64,18 +77,5 @@ export class PostCreateComponent implements OnInit {
       this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.content, this.form.value.image)
     }
     this.form.reset();
-  }
-
-  onImagePicked(event: Event) {
-    const file = (<HTMLInputElement>event.target).files[0];
-    this.form.patchValue({
-      image: file
-    });
-    this.form.get('image').updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result as string;
-    };
-    reader.readAsDataURL(file);
   }
 }

@@ -7,12 +7,30 @@ mat-spinner {
   margin: auto;
 }
 
+mat-paginator {
+  margin-top: 1rem;
+}
+
 .info-text {
   text-align: center;
 }
 
+.image-container {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden;
+}
 .post-image {
-  width: 100%;
+  max-width: 50rem;
+  max-height: 30rem;
+  align-self: center;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.post-image::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
 }
 
 .post-image img {
